@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Admin Panel</h1>
+
+<form method="POST">
+    <button>Process Next Pickup</button>
+</form>
+
+{% for q in queue %}
+<div class="card">
+    {{ q.user }} | {{ q.category }} | {{ q.weight }}kg
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Rewards</h1>
+
+{% for r in rewards %}
+<div class="card">
+    {{ r[0] }} - {{ r[1] }} pts
+</div>
+{% endfor %}
+
+{% endblock %}

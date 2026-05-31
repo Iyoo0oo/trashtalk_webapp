@@ -7,7 +7,7 @@
 </div>
 
 <!-- ===================== -->
-<!-- FORM SECTION -->
+<!-- FORM -->
 <!-- ===================== -->
 <div class="card form-card">
 
@@ -19,10 +19,17 @@
         <input name="address" placeholder="Enter full address" required>
 
         <label>Category</label>
-        <input name="category" placeholder="plastic / paper / metal / glass" required>
+        <select name="category" id="category" required>
+            <option value="">-- Select Category --</option>
+            {% for cat in categories.keys() %}
+                <option value="{{ cat }}">{{ cat.capitalize() }}</option>
+            {% endfor %}
+        </select>
 
         <label>Subcategory</label>
-        <input name="sub" placeholder="bottle / cardboard / aluminum..." required>
+        <select name="sub" id="sub" required>
+            <option value="">-- Select Subcategory --</option>
+        </select>
 
         <label>Weight (kg)</label>
         <input name="weight" type="number" step="0.1" placeholder="e.g. 2.5" required>
@@ -34,7 +41,7 @@
 </div>
 
 <!-- ===================== -->
-<!-- QUEUE SECTION -->
+<!-- QUEUE -->
 <!-- ===================== -->
 <div class="section">
 
@@ -63,5 +70,35 @@
     {% endif %}
 
 </div>
+
+
+<script id="categories-data" type="application/json">
+{{ categories | tojson | safe }}
+</script>
+
+<script>
+const categories = JSON.parse(
+    document.getElementById("categories-data").textContent
+);
+
+const categorySelect = document.getElementById("category");
+const subSelect = document.getElementById("sub");
+
+categorySelect.addEventListener("change", function () {
+
+    const selected = this.value;
+
+    subSelect.innerHTML = '<option value="">-- Select Subcategory --</option>';
+
+    const items = categories[selected] || [];
+
+    items.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item;
+        option.textContent = item;
+        subSelect.appendChild(option);
+    });
+});
+</script>
 
 {% endblock %}

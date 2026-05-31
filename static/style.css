@@ -90,3 +90,64 @@ button:hover {
     color: #94a3b8;
     text-align: center;
 }
+body {
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+}
+
+.nav {
+    padding: 10px;
+}
+
+.nav a {
+    margin-right: 10px;
+    color: #38bdf8;
+}
+
+.container {
+    width: 450px;
+    margin: auto;
+}
+
+input, select, button {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.card {
+    background: #1e293b;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 12px;
+}
+
+button {
+    background: #22c55e;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #16a34a;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tag {
+    background: #334155;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.empty {
+    color: #94a3b8;
+    text-align: center;
+}

@@ -16,7 +16,6 @@ class Pickup:
     weight: float
 
 
-# normalize helper
 def norm(text):
     return text.strip().lower()
 
@@ -25,7 +24,10 @@ def validate(cat, sub):
     cat = norm(cat)
     sub = norm(sub)
 
-    return cat in WASTE and sub in WASTE[cat]
+    if cat not in WASTE:
+        return False
+
+    return sub in WASTE[cat]
 
 
 def add(user, address, cat, sub, weight):
@@ -37,15 +39,7 @@ def add(user, address, cat, sub, weight):
     if not validate(cat, sub):
         return None
 
-    p = Pickup(
-        id_counter,
-        user,
-        address,
-        cat,
-        sub,
-        weight
-    )
-
+    p = Pickup(id_counter, user, address, cat, sub, weight)
     queue.append(p)
     id_counter += 1
     return p

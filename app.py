@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 
-from config import ADMIN
+from config import ADMIN, WASTE
 from services.auth import register, login
 from services.waste import add, process, get_all
 from services.storage import init, update_rewards, write
@@ -41,7 +41,7 @@ def log():
             session["admin"] = False
             return redirect("/dashboard")
 
-    return render_template("login.html")
+    return render_template("index.html")
 
 
 @app.route("/dashboard", methods=["GET", "POST"])
@@ -68,7 +68,11 @@ def dash():
 
             update_rewards(p.user, int(p.weight * 10))
 
-    return render_template("dashboard.html", queue=get_all())
+    return render_template(
+        "dashboard.html",
+        queue=get_all(),
+        categories=WASTE
+    )
 
 
 @app.route("/admin", methods=["GET", "POST"])
